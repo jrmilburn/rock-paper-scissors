@@ -9,6 +9,10 @@
     <script>
 
         let computerChoice;
+        let scoreComputer = 0;
+        let scorePlayer = 0;
+
+        console.log("Best of 5 Rock Paper Scissors!");
 
         function getComputerChoice() {
 
@@ -33,26 +37,47 @@
         }
 
         function playGame(computerSelection, playerSelection) {
-            if (computerSelection === playerSelection){
+            if (computerSelection.toLowerCase() === playerSelection.toLowerCase()){
                 console.log("Tie");
-            } else if(playerSelection === "Rock" && computerSelection === "Scissors"){
+            } else if(playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "scissors"){
                 console.log(`You win! ${playerSelection} beats ${computerSelection}`);
-            } else if(playerSelection === "Rock" && computerSelection === "Paper"){
+                scorePlayer += 1;
+            } else if(playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "paper"){
                 console.log(`You lose! ${playerSelection} beats ${computerSelection}`);
-            } else if(playerSelection === "Scissors" && computerSelection === "Rock"){
+                scoreComputer += 1;
+            } else if(playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "rock"){
                 console.log(`You lose! ${playerSelection} beats ${computerSelection}`);
-            } else if(playerSelection === "Scissors" && computerSelection === "Paper"){
+                scoreComputer += 1;
+            } else if(playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "paper"){
                 console.log(`You win! ${playerSelection} beats ${computerSelection}`);
-            } else if(playerSelection === "Paper" && computerSelection === "Rock"){
+                scorePlayer += 1;
+            } else if(playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "rock"){
                 console.log(`You win! ${playerSelection} beats ${computerSelection}`);
-            } else if(playerSelection === "Paper" && computerSelection === "Scissors"){
+                scorePlayer += 1;
+            } else if(playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "scissors"){
                 console.log(`You lose! ${playerSelection} beats ${computerSelection}`);
+                scoreComputer += 1;
             }
         }
 
-        let playerChoice = prompt("Pick rock, paper or scissors");
-        getComputerChoice();
-        playGame(computerChoice, playerChoice);
+
+        for (let i = 0; i < 5; i++){
+
+            let playerChoice = prompt("Pick rock, paper or scissors");
+            getComputerChoice();
+            playGame(computerChoice, playerChoice);
+
+            console.log(`${scorePlayer}-${scoreComputer}`);
+            
+        }
+        
+        if (scorePlayer > scoreComputer){
+            console.log(`You win ${scorePlayer}-${scoreComputer}`);
+        } else if(scorePlayer < scoreComputer){
+            console.log(`You lose ${scorePlayer}-${scoreComputer}`);
+        } else {
+            console.log(`Tie! ${scorePlayer}-${scoreComputer}`);
+        }
 
     </script>
 </body>
